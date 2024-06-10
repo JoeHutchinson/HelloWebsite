@@ -63,7 +63,7 @@ There's many. But to list the main ones:
 1. VPC should have infra and DB subnets, in this example I don't need a DB so I didn't create one, I also didn't require subnets without internet access
 1. ALB should have a WAF attached to it, to protect against common web attacks
 1. ALB should have a Route53 domain and SSL certificate attached to it, to allow for a custom domain
-1. If for a production system I'd build opinionated TF modules instead of using the AWS modules, this would allow for more control, improved readability and easier to maintain
+1. If for a production system I'd build opinionated TF modules instead of using the AWS modules, this would allow for more control, improved readability and easier to maintain. I chose to use the AWS modules more out of curiosity to see how much they've improved in 4 years since I last used them, turns out not much, they try to cater to all use cases at the expense of readability/usability, better off creating your own.
 1. Outbound traffic proxied through security gateway to ensure no data exfiltration, specified via an AWS prefix list
 1. A CI/CD pipeline in place to deploy the infrastructure, this would allow for better testing and more frequent deployments
 1. A `400-monitoring` component defining alerts and dashboards, to alert on any issues with the service
