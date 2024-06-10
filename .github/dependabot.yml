@@ -1,0 +1,42 @@
+version: 2
+registries:
+  github-checkout:
+    type: "git"
+    url: "https://github.com"
+    username: "x-access-token"
+    password: "${{ secrets.DEPENDABOT_GITHUB_TOKEN }}"
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 1
+  - package-ecosystem: "terraform"
+    directories:
+      - "./components/100-ipam"
+      - "./components/200-network"
+      - "./components/300-app"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 1
+  - package-ecosystem: "gradle"
+    directories:
+      - "./components/100-ipam"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 1
+groups:
+  minor-and-patch-security-updates:
+    applies-to: security-updates
+    patterns:
+      - "*"
+    update-types:
+      - "patch"
+      - "minor"
+  minor-and-patch-version-updates:
+    applies-to: version-updates
+    patterns:
+      - "*"
+    update-types:
+      - "patch"
+      - "minor"
