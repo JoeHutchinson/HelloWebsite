@@ -23,13 +23,13 @@ Dependabot config in place to keep all the modules up to date. Pre-commit hooks 
 
 1. Clone the repository:
 
-  ```bash
+  ```console
   git clone https://github.com/your-username/HelloWebsite.git
   ```
 
 1. Change into the project directory:
 
-  ```bash
+  ```console
   cd HelloWebsite
   ```
 
@@ -44,7 +44,7 @@ Dependabot config in place to keep all the modules up to date. Pre-commit hooks 
 
 2. Deploy the website infrastructure in ascending order:
   e.g.
-  ```bash
+  ```console
   terraform -chdir=components\200-network\ init
   terraform -chdir=components\200-network\ apply --var-file=.\..\variables\default.tfvars
   terraform -chdir=components\300-app\ init
@@ -52,7 +52,33 @@ Dependabot config in place to keep all the modules up to date. Pre-commit hooks 
   ```
 
 3. Access the website by to the provided URL in the output `service_address` field of of the `300-app` component.
-e.g. curl ex-HelloWebsite-1825686964.eu-west-1.elb.amazonaws.com
+e.g.
+
+```console
+curl ex-HelloWebsite-1825686964.eu-west-1.elb.amazonaws.com
+```
+
+Expected response:
+
+```console
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"message":"hello world!"}
+RawContent        : HTTP/1.1 200 OK
+                    Transfer-Encoding: chunked
+                    Connection: keep-alive
+                    Content-Type: application/json
+                    Date: Mon, 10 Jun 2024 20:39:47 GMT
+
+                    {"message":"hello world!"}
+Forms             : {}
+Headers           : {[Transfer-Encoding, chunked], [Connection, keep-alive], [Content-Type, application/json], [Date, Mon, 10 Jun 2024 20:39:47 GMT]}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 26
+```
 
 ## Limitations / Future Improvements
 
